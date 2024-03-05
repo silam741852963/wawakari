@@ -22,7 +22,7 @@ def calculate_politeness_level(sentence):
                          "いただきます","おじゃまします","お邪魔します","はいけんします","はいけんします"]
     impolite_expression = ["貴様ども","おまえらども","馬鹿ども"]
     impolite_tokens  = ["ダ","バカ","ヤロウ","アホ","チクショウ","キサマ","ジジイ","ババア",
-                        "マヌケ","クソ","ザコ","アイツ","ゴミ","クズ","カス"]
+                        "マヌケ","クソ","ザコ","アイツ","ゴミ","クズ","カス","コイツ"]
     # Initialize politeness level
     politeness_level = 0
 
