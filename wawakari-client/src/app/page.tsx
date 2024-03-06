@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useFormStatus } from "react-dom";
 
 const MainVars = {
   initital: {
@@ -68,9 +69,51 @@ const ArrowVars = {
   },
 };
 
+function Submit() {
+  const { pending } = useFormStatus();
+  const [isHovered, setHovered] = useState(false);
+
+  return (
+    <motion.button
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      variants={MainItemVars}
+      className="text-5xl p-5 pt-14 font-mono flex justify-center gap-5"
+    >
+      {pending ? (
+        "Submitting..."
+      ) : (
+        <>
+          Submit
+          <motion.span
+            variants={ArrowVars}
+            animate={isHovered ? "hover" : ""}
+            initial="initial"
+          >
+            →
+          </motion.span>
+        </>
+      )}
+    </motion.button>
+  );
+}
+
+function Input() {
+  const { pending } = useFormStatus();
+
+  return (
+    <motion.input
+      variants={MainItemVars}
+      type="text"
+      name="text"
+      className="text-black rounded-full p-5 text-5xl w-screen"
+      disabled={pending ? true : false}
+    />
+  );
+}
+
 export default function Home() {
   const router = useRouter();
-  const [isHovered, setHovered] = useState(false);
 
   return (
     <>
@@ -79,7 +122,7 @@ export default function Home() {
         initial="initial"
         animate="animate"
         exit="exit"
-        className=""
+        className="flex flex-col justify-center items-center w-screen h-screen overflow-hidden"
       >
         <motion.h1
           variants={MainItemVars}
@@ -97,27 +140,8 @@ export default function Home() {
             router.push(`/${formData.get("text")}`);
           }}
         >
-          <motion.input
-            variants={MainItemVars}
-            type="text"
-            name="text"
-            className="text-black rounded-full p-5 text-5xl"
-          />
-          <motion.button
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            variants={MainItemVars}
-            className="text-5xl p-5 pt-14 font-mono flex justify-center gap-5"
-          >
-            Sumbit{" "}
-            <motion.span
-              variants={ArrowVars}
-              animate={isHovered ? "hover" : ""}
-              initial="initial"
-            >
-              →
-            </motion.span>
-          </motion.button>
+          <Input />
+          <Submit />
         </motion.form>
       </motion.main>
     </>

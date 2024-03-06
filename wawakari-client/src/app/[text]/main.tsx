@@ -1,15 +1,16 @@
+import DrawDiagram from "@/app/[text]/DrawDiagram";
+import classifyTokens from "@/lib/classifyBasedOnHeadIndex";
+
 type Props = {
   tokens: Token[];
   politeness: number;
 };
 
 export default function Main(props: Props) {
+  const [root, tokens] = classifyTokens(props.tokens);
   return (
     <main className="text-white">
-      <h1>{props.politeness}</h1>
-      {props.tokens.map((token) => {
-        return <div key={token.index}>{token.orth}</div>;
-      })}
+      <DrawDiagram rootToken={root} groupedTokens={tokens} />
     </main>
   );
 }

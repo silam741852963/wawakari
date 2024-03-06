@@ -26,8 +26,68 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.max-content{
+  width: max-content;
+}
+
+.levelSection{
+  width: max(100vw, 100%);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.depth-0{
+  background-color: #2ecc71;
+}
+
+.depth-1{
+  background-color: #27ae60;
+}
+
+.depth-2{
+  background-color: #e67e22;
+}
+
+.depth-3{
+  background-color: #d35400;
+}
+
+.depth-4{
+  background-color: #3498db;
+}
+
+.depth-5{
+  background-color: #2980b9;
+}
+
+.depth-6{
+  background-color: #e74c3c;
+}
+
+.depth-7{
+  background-color: #c0392b;
+}
+
+.depth-8{
+  background-color: #9b59b6;
+}
+
+.depth-9{
+  background-color: #8e44ad;
+}
+
+.depth-10{
+  background-color: #f1c40f;
+}
+
+.depth-11{
+  background-color: #1abc9c;
+}
+
+.depth-7{
+  background-color: #16a085;
 }
