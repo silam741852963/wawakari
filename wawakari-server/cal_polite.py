@@ -1,6 +1,23 @@
 import spacy
 import sys
 
+def get_politeness_terms():
+    politeness_terms = {
+        -5: "Extremely Impolite",
+        -4: "Very Impolite",
+        -3: "Impolite",
+        -2: "Moderately Impolite",
+        -1: "Slightly Impolite",
+        0: "Neutral",
+        1: "Slightly Polite",
+        2: "Moderately Polite",
+        3: "Polite",
+        4: "Very Polite",
+        5: "Extremely Polite"
+    }
+
+    return politeness_terms
+
 def calculate_politeness_level(sentence):
     # Load the Ginza model
     nlp = spacy.load("ja_ginza_electra")
