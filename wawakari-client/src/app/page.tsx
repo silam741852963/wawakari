@@ -4,6 +4,13 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useFormStatus } from "react-dom";
+import { setCookie, getCookie } from "cookies-next";
+
+import dynamic from "next/dynamic";
+
+const NoSSRSH = dynamic(() => import("./component/SearchHistory"), {
+  ssr: false,
+});
 
 const MainVars = {
   initital: {
@@ -106,13 +113,15 @@ function Input() {
       variants={MainItemVars}
       type="text"
       name="text"
-      className="text-black rounded-full p-5 text-5xl w-screen"
+      className="text-black rounded-full p-5 text-5xl w-screen disabled:cursor-not-allowed"
       disabled={pending ? true : false}
     />
   );
 }
 
 export default function Home() {
+  const [searchText, setSearchText] = useState("");
+
   const router = useRouter();
 
   return (
@@ -137,11 +146,24 @@ export default function Home() {
           exit="exit"
           className="flex flex-col justify-center"
           action={(formData: FormData) => {
+            let search = (
+              getCookie("search")
+                ? JSON.parse(getCookie("search") as string)
+                : []
+            ) as [];
+            search.unshift(formData.get("text") as never);
+            setCookie(
+              "search",
+              JSON.stringify(
+                search.filter((value, index) => search.indexOf(value) === index)
+              )
+            );
             router.push(`/${formData.get("text")}`);
           }}
         >
           <Input />
           <Submit />
+          <NoSSRSH />
         </motion.form>
       </motion.main>
     </>

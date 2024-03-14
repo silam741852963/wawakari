@@ -10,7 +10,11 @@ export default function Main(props: Props) {
   const [root, tokens] = classifyTokens(props.tokens);
   return (
     <main className="text-white">
-      <DrawDiagram rootToken={root} groupedTokens={tokens} />
+      <DrawDiagram
+        rootToken={root}
+        groupedTokens={tokens}
+        politeness={props.politeness}
+      />
     </main>
   );
 }
