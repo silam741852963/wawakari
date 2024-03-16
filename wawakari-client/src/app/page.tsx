@@ -5,8 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useFormStatus } from "react-dom";
 import { setCookie, getCookie } from "cookies-next";
+import useDisclaimer from "./hook/useDisclaimer";
+import { DisclaimerContextType } from "./context/DisclaimerContext";
+import Disclaimer from "./component/Disclaimer/Disclaimer";
 
 import dynamic from "next/dynamic";
+import OpenButton from "./component/Disclaimer/OpenButton";
 
 const NoSSRSH = dynamic(() => import("./component/SearchHistory"), {
   ssr: false,
@@ -120,7 +124,8 @@ function Input() {
 }
 
 export default function Home() {
-  const [searchText, setSearchText] = useState("");
+  const { disclaimerContext, setDisclaimerContext } =
+    useDisclaimer() as DisclaimerContextType;
 
   const router = useRouter();
 
@@ -165,6 +170,8 @@ export default function Home() {
           <Submit />
           <NoSSRSH />
         </motion.form>
+        <OpenButton />
+        <Disclaimer />
       </motion.main>
     </>
   );

@@ -59,7 +59,7 @@ export default function SearchHistory() {
     >
       {search.map((searchHis) => {
         return (
-          <motion.li variants={LiVars}>
+          <motion.li variants={LiVars} key={searchHis}>
             <Link
               href={`/${searchHis}`}
               className=" bg-slate-600 rounded-lg p-2"

@@ -1,8 +1,18 @@
 import spacy
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+from dotenv import load_dotenv
 from cal_polite import calculate_politeness_level
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
+
+app.config.update(
+    DEBUG=os.environ.get("FLASK_DEBUG")
+)
 
 nlp = spacy.load('ja_ginza_electra')
 
@@ -24,5 +34,5 @@ def parse(text):
                 token.head.i,))
     return jsonify(res), 200
 
-if __name__ == 'main':
-    app.run(debug=True, port=5000)
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 8080)))
