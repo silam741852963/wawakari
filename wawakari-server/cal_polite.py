@@ -10,7 +10,7 @@ def calculate_politeness_level(sentence):
 
     # Define a list of polite prefixes in Japanese
     polite_prefixes = ["お", "ご"]
-    polite_tokens = ["ドウゾ","ドウモ","デス","マス"]
+    polite_tokens = ["ドウゾ","ドウモ","デス","マス","ワタシ","サマ","サン","クン","チャン","センセイ","センパイ"]
     polite_expression = ["ございあります","おはようございます","いらっしゃいます","おいでになります"
                         ,"おっしゃいます","くださいます","なさいます","ごぞんじです","ご存じです",
                          "お亡くなりになります","おなくなりになります","召し上がります",
@@ -22,7 +22,7 @@ def calculate_politeness_level(sentence):
                          "いただきます","おじゃまします","お邪魔します","はいけんします","はいけんします"]
     impolite_expression = ["貴様ども","おまえらども","馬鹿ども"]
     impolite_tokens  = ["ダ","バカ","ヤロウ","アホ","チクショウ","キサマ","ジジイ","ババア",
-                        "マヌケ","クソ","ザコ","アイツ","ゴミ","クズ","カス","コイツ"]
+                        "マヌケ","クソ","ザコ","アイツ","ゴミ","クズ","カス","コイツ","オレ","オマエ"]
     # Initialize politeness level
     politeness_level = 0
 
