@@ -51,7 +51,7 @@ python app.py
 
 3. Set up the Next.js frontend
    
-Be sure to set up .env.local file in wawakari/wawakari-client with SERVER_URL
+Ensure you create a .env.local file within the wawakari/wawakari-client directory, specifying the SERVER_URL.
 
 ```
 # Navigate to the frontend directory
